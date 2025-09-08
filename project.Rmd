@@ -1,0 +1,84 @@
+---
+title: "R Markdown"
+author: "programandoenr"
+date: "2022-09-09"
+output:
+  pdf_document: default
+  html_document: default
+bibliography: referencias.bib
+---
+
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+knitr::write_bib(x = c("knitr", "rmarkdown") , file = "referencias.bib")
+```
+
+```{r rmarkdown, echo=FALSE, out.width='5%', fig.align='left', fig.cap='Logo'}
+knitr::include_graphics("rmarkdown.png")
+```
+
+# - Gráfico ggplot2 
+
+Este gráfico es realizado con ggplot2: <https://ggplot2.tidyverse.org/> 
+
+## - Datos 
+
+```{r}
+library("ggplot2")
+library(readxl)
+note <- read_excel("note.xlsx")
+ma <- source("ma.R") 
+df <- source("code.R")
+```
+
+## - Gráficos 
+
+A1
+
+```{r}
+ggplot(not2) + 
+     geom_col(aes(kk, ECTS, fill = kk, width = .9), stat = 'identity') + 
+  scale_fill_viridis_d(labels = lb, legend_title <- "Semestre") +
+  scale_x_discrete(labels = lb) +
+  guides(col = guide_legend(title = "ECTS")) +
+  labs(title = 'Credits Received | Créditos recibidos',
+    x = 'Semester | Semestre', y = "ECTS | Créditos recibidos") 
+```
+A2
+
+```{r}
+  ggplot(df6, aes(x = YEAR, y = POPULATION, fill = POP)) +
+    geom_col(position = "dodge") +
+    ggtitle("Population in Madrid (2000, 2005, 2010 and 2015)") + 
+    scale_y_continuous(labels = function(x) format(x, scientific = F)) +
+    xlab("Year") +
+    ylab("Population") 
+```
+
+A3
+
+```{r}
+  ggplot(df5, aes(x=LAT, y=LON)) +
+    ggtitle("Catalonia (2016)") + 
+    xlab("LAT") +
+    ylab("LON") +
+    geom_point(colour = "blue")
+```
+
+# - Tabla 
+
+Tabla de datos ordenada:
+
+```{r}
+library(DT)
+library(kableExtra)
+tb <- not2[1:7, 1:4]
+tb %>%
+  kbl() %>%
+  kable_styling()
+```
+
+Esta es una plantilla básica R-Markdown [@R-rmarkdown]
+
+# - Referencias 

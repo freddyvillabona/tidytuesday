@@ -1,0 +1,72 @@
+---
+title: "R Markdown"
+author: "programandoenr"
+date: "2023-01-30"
+output:
+  html_document: default
+  pdf_document: default
+bibliography: referencias.bib
+---
+
+# R Markdown :) 
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+knitr::write_bib(x = c("knitr", "rmarkdown") , file = "referencias.bib")
+```
+
+```{r rmarkdown, echo=FALSE, out.width='5%', fig.align='left', fig.cap='Logo'}
+knitr::include_graphics("rmarkdown.png")
+```
+
+# - Gráfico ggplot2 
+
+Este gráfico es realizado con ggplot2: <https://ggplot2.tidyverse.org/> 
+
+## - Datos 
+
+```{r}
+library(readxl)
+note <- read_excel("note.xlsx")
+ma <- source("ma.R") 
+df <- source("code.R")
+uc <- source("uc.R")
+```
+
+## - Gráficos 
+
+A1
+
+```{r}
+ggplot(not2) + 
+     geom_col(aes(kk, ECTS, fill = kk, width = .9), stat = 'identity') + 
+  scale_fill_viridis_d(labels = lb, legend_title <- "Semester") +
+  scale_x_discrete(labels = lb) +
+  guides(col = guide_legend(title = "ECTS")) +
+  labs(title = 'Credits Received | Créditos recibidos',
+    x = 'Semester | Semestre', y = "ECTS | Créditos recibidos") +
+  theme_minimal()
+```
+A2
+
+```{r}
+  ggplot(df6, aes(x = YEAR, y = POPULATION, fill = POP)) +
+    geom_col(position = "dodge") +
+    ggtitle("Population in Madrid (2000, 2005, 2010 and 2015)") + 
+    scale_y_continuous(labels = function(x) format(x, scientific = F)) +
+    xlab("Year") +
+    ylab("Population") +
+  theme_minimal()
+```
+
+
+
+
+```{r}
+map_ggplot2
+```
+
+
+Esta es una plantilla básica R-Markdown [@R-rmarkdown]
+
+# - Referencias 

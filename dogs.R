@@ -65,4 +65,4 @@ img <- image_read("dog1.png")
 q <- ggdraw() + 
   draw_plot(p) +
   draw_image(img, 0.31, 0.2, scale=0.30)
-q
+qstw
